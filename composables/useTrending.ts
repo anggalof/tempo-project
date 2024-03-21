@@ -1,4 +1,4 @@
-const trendingUrl = "/api/trending/movie/day";
+const trendingUrl = "/api/trending/movie/week?page=1&per_page=3";
 
 export const useMovieTrending = async () => {
   const { data } = await useAPI(trendingUrl);
