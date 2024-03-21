@@ -1,0 +1,27 @@
+{
+  "data": {
+    "news": [
+      {
+        "image_url": "/images/avatar-1.png",
+        "name": "Robert Hercules",
+        "day": "Minggu",
+        "dateTime": "4 Maret 2024",
+        "description": "Terdapat makanan yang disediakan oleh tim IT untuk bisa di nikmati bersama, ditunggu kedatang untuk semua divisi di jam 5 sore ini ya. Makanannya enak-enak loh jadi jangan sampai tidak kebagian"
+      },
+      {
+        "image_url": "/images/avatar-2.png",
+        "name": "Ana Riswati",
+        "day": "Senin",
+        "dateTime": "5 Maret 2024",
+        "description": "Informasi terhadap seluruh karyawan agar segera melakukan lapor pajak SPT paling lambar akhir maret ini, terimakasih."
+      },
+      {
+        "image_url": "/images/avatar-3.png",
+        "name": "Leo Mukmin",
+        "day": "Senin",
+        "dateTime": "5 Maret 2024",
+        "description": "Kita bakal mengadakan hangeout bareng untuk seluruh divisi, untuk info lebih lanjut akan kita update disini ya. ditunggu!"
+      }
+    ]
+  }
+}

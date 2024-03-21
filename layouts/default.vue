@@ -1,10 +1,11 @@
 <script setup lang="ts">
+import Navigation from "~/components/common/Navigation.vue";
 </script>
 
 <template>
   <main>
     <div class="main-content">
-      <!-- header -->
+      <Navigation />
       <div class="content-ds">
         <slot />
       </div>
@@ -16,7 +17,6 @@
 .main-content {
   display: flex;
   flex-flow: column;
-  width: calc(100% - 240px);
   height: 100vh;
 }
 
