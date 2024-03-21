@@ -22,9 +22,7 @@ import Navigation from "~/components/common/Navigation.vue";
 
 .content-ds {
   position: relative;
-  height: calc(100vh - 92px);
-  padding: 2rem;
   overflow-y: auto;
-  background-color: #f5f5f5;
+  background-color: #1e2329;
 }
 </style>

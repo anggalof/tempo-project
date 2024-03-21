@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { getYear } from "~/utils/formatter/dateTime";
+
 type TBanner = {
   image_url: string;
   name: string;
@@ -47,52 +49,62 @@ timeoutRef.value = setTimeout(() => {
 </script>
 
 <template>
-  <div class="slideshow">
+  <div class="trending">
     <div
-      class="slideshow-slider"
+      class="trending-slider"
       :style="{
         transform: `translate3d(${-(index === 0 ? index : index === 1 ? '85.5' : '175')}%, 0, 0)`,
       }"
     >
-      <div class="news-box">
+      <div class="trending-box">
         <div
           v-for="(item, index) in data"
           :key="index"
-          class="news-box__wrapper"
+          class="trending-box__wrapper"
         >
-          <div class="news-detail__wrapper">
-            <div class="news-detail">
-              <div class="news-image">
-                <img
-                  :src="`https://image.tmdb.org/t/p/original/${item.poster_path}`"
-                  alt="avatar"
-                />
-              </div>
-              <div class="news-name">
-                {{ item.original_title }}
+          <div class="trending-detail">
+            <div class="trending-image">
+              <img
+                :src="`https://image.tmdb.org/t/p/original/${item.poster_path}`"
+                alt="avatar"
+              />
+            </div>
+            <div class="trending-content">
+              <div class="trending-content__wrapper">
+                <div class="trending-rating">
+                  <img
+                    src="~assets/img/star.svg"
+                    alt="star"
+                  />
+                  {{ parseFloat(item.vote_average.toFixed(1)) }}
+                </div>
+                <div class="trending-name">
+                  {{ item.original_title }}
+                </div>
+                <div class="trending-flex__content">
+                  <div class="trending-date">
+                    {{ getYear(item.release_date) }}
+                  </div>
+                  <div class="poin"><span>•</span></div>
+                  <div class="trending-type">
+                    {{ item.media_type }}
+                  </div>
+                </div>
+                <div class="trending-description">
+                  {{ item.overview }}
+                </div>
               </div>
             </div>
-            <div class="news-detail__date">
-              <div class="news-detail__date-day">
-                {{ item.media_type }}
-              </div>
-              <div class="news-detail__date-time">
-                {{ item.release_date }}
-              </div>
-            </div>
-          </div>
-          <div class="news-detail__description">
-            {{ item.overview }}
           </div>
         </div>
       </div>
     </div>
 
-    <div class="slideshow-dots">
+    <div class="trending-dots">
       <div
         v-for="(_, idx) in data"
         :key="idx"
-        class="slideshow-dot"
+        class="trending-dot"
         :class="index === idx && 'active'"
         @click="
           () => {
@@ -105,86 +117,101 @@ timeoutRef.value = setTimeout(() => {
 </template>
 
 <style lang="scss" scoped>
-/* Slideshow */
-.slideshow {
+/* trending */
+.trending {
   margin: 0 auto;
   overflow: hidden;
-  max-width: 500px;
 
-  .slideshow-slider {
+  .trending-slider {
     transition: ease 1000ms;
     white-space: nowrap;
 
-    .news-box__wrapper {
+    .trending-box__wrapper {
       display: inline-block;
       border-radius: 1rem;
       padding: 1rem;
-      box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12);
       margin: 0 5px;
-      width: 80%;
-      height: 150%;
 
-      .news-detail__wrapper {
+      .trending-detail {
         display: flex;
-        justify-content: space-between;
 
-        .news-detail {
-          display: flex;
-          justify-content: space-between;
+        .trending-image {
+          img {
+            width: 243.08px;
+            height: 364.61px;
+          }
+        }
 
-          .news-image {
-            img {
-              border-radius: 50%;
-              width: 2rem;
-              height: 2rem;
+        .trending-content {
+          padding: 2rem 0;
+
+          .trending-content__wrapper {
+            width: 350px;
+            height: 100%;
+            background-color: #000000;
+            color: #ffffff;
+            padding: 1rem;
+
+            .trending-rating {
+              display: flex;
+              font-size: 18px;
+              font-weight: 700;
+
+              img {
+                margin-right: 0.5rem;
+              }
+            }
+
+            .trending-name {
+              font-size: 28px;
+              font-weight: 700;
+              display: flex;
+              align-items: center;
+            }
+
+            .trending-flex__content {
+              display: flex;
+              font-size: 12px;
+
+              .trending-date {
+                margin-right: 0.5rem;
+              }
+
+              .poin {
+                span {
+                  font-size: 28px;
+                  color: #808080;
+                  line-height: 0.8;
+                }
+              }
+
+              .trending-type {
+                margin-left: 0.5rem;
+              }
+            }
+
+            .trending-description {
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 3;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: normal;
+              font-size: 14px;
             }
           }
-
-          .news-name {
-            font-family: "SVN-Gilroy-Bold", sans-serif;
-            font-size: 14px;
-            color: #f95846;
-            display: flex;
-            align-items: center;
-            margin-left: 0.5rem;
-          }
         }
-
-        .news-detail__date {
-          text-align: right;
-
-          .news-detail__date-day {
-            font-size: 12px;
-            color: #000000;
-          }
-          .news-detail__date-time {
-            color: #000000;
-            font-size: 12px;
-          }
-        }
-      }
-
-      .news-detail__description {
-        color: #000000;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 3;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: normal;
-        margin-top: 1rem;
-        font-size: 14px;
       }
     }
   }
 
   /* Buttons */
 
-  .slideshow-dots {
+  .trending-dots {
     text-align: center;
   }
 
-  .slideshow-dot {
+  .trending-dot {
     display: inline-block;
     height: 12px;
     width: 12px;
@@ -196,7 +223,7 @@ timeoutRef.value = setTimeout(() => {
     background-color: #c4c4c4;
   }
 
-  .slideshow-dot.active {
+  .trending-dot.active {
     background-color: #f95846;
     width: 5rem;
     border-radius: 2rem;
