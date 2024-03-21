@@ -1,0 +1,9 @@
+{
+  "extends": ["@nuxtjs/eslint-config-typescript", "prettier"],
+  "plugins": ["simple-import-sort"],
+  "rules": {
+    "no-irregular-whitespace": ["error", { "skipComments": true }],
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error"
+  }
+}

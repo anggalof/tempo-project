@@ -1,0 +1,429 @@
+@import "./variables";
+
+.black-100 {
+  color: $black-100;
+}
+
+.black-80 {
+  color: $black-80;
+}
+
+.black-60 {
+  color: $black-60;
+}
+
+.black-50 {
+  color: $black-50;
+}
+
+.black-40 {
+  color: $black-40;
+}
+
+.black-30 {
+  color: $black-30;
+}
+
+.black-20 {
+  color: $black-20;
+}
+
+.black-00 {
+  color: $black-00;
+}
+
+.primary-green-120 {
+  color: $primary-green-120;
+}
+
+.primary-green-110 {
+  color: $primary-green-110;
+}
+
+.primary-green-100 {
+  color: $primary-green-100;
+}
+
+.primary-green-90 {
+  color: $primary-green-90;
+}
+
+.primary-green-80 {
+  color: $primary-green-80;
+}
+
+.primary-green-70 {
+  color: $primary-green-70;
+}
+
+.primary-green-60 {
+  color: $primary-green-60;
+}
+
+.primary-green-50 {
+  color: $primary-green-50;
+}
+
+.primary-green-40 {
+  color: $primary-green-40;
+}
+
+.primary-brown-120 {
+  color: $primary-brown-120;
+}
+
+.primary-brown-110 {
+  color: $primary-brown-110;
+}
+
+.primary-brown-100 {
+  color: $primary-brown-100;
+}
+
+.primary-brown-90 {
+  color: $primary-brown-90;
+}
+
+.primary-brown-80 {
+  color: $primary-brown-80;
+}
+
+.primary-brown-70 {
+  color: $primary-brown-70;
+}
+
+.primary-brown-60 {
+  color: $primary-brown-60;
+}
+
+.primary-brown-50 {
+  color: $primary-brown-50;
+}
+
+.primary-brown-40 {
+  color: $primary-brown-40;
+}
+
+.primary-sand-120 {
+  color: $primary-sand-120;
+}
+
+.primary-sand-110 {
+  color: $primary-sand-110;
+}
+
+.primary-sand-100 {
+  color: $primary-sand-100;
+}
+
+.primary-sand-90 {
+  color: $primary-sand-90;
+}
+
+.primary-sand-80 {
+  color: $primary-sand-80;
+}
+
+.primary-sand-70 {
+  color: $primary-sand-70;
+}
+
+.primary-sand-60 {
+  color: $primary-sand-60;
+}
+
+.primary-sand-50 {
+  color: $primary-sand-50;
+}
+
+.primary-sand-40 {
+  color: $primary-sand-40;
+}
+
+.product-green-120 {
+  color: $product-green-120;
+}
+
+.product-green-110 {
+  color: $product-green-110;
+}
+
+.product-green-100 {
+  color: $product-green-100;
+}
+
+.product-green-90 {
+  color: $product-green-90;
+}
+
+.product-green-80 {
+  color: $product-green-80;
+}
+
+.product-green-70 {
+  color: $product-green-70;
+}
+
+.product-green-60 {
+  color: $product-green-60;
+}
+
+.product-green-50 {
+  color: $product-green-50;
+}
+
+.product-green-40 {
+  color: $product-green-40;
+}
+
+.product-red-120 {
+  color: $product-red-120;
+}
+
+.product-red-110 {
+  color: $product-red-110;
+}
+
+.product-red-100 {
+  color: $product-red-100;
+}
+
+.product-red-90 {
+  color: $product-red-90;
+}
+
+.product-red-80 {
+  color: $product-red-80;
+}
+
+.product-red-70 {
+  color: $product-red-70;
+}
+
+.product-red-60 {
+  color: $product-red-60;
+}
+
+.product-red-50 {
+  color: $product-red-50;
+}
+
+.product-red-40 {
+  color: $product-red-40;
+}
+
+.product-blue-120 {
+  color: $product-blue-120;
+}
+
+.product-blue-110 {
+  color: $product-blue-110;
+}
+
+.product-blue-100 {
+  color: $product-blue-100;
+}
+
+.product-blue-90 {
+  color: $product-blue-90;
+}
+
+.product-blue-80 {
+  color: $product-blue-80;
+}
+
+.product-blue-70 {
+  color: $product-blue-70;
+}
+
+.product-blue-60 {
+  color: $product-blue-60;
+}
+
+.product-blue-50 {
+  color: $product-blue-50;
+}
+
+.product-blue-40 {
+  color: $product-blue-40;
+}
+
+.product-brown-120 {
+  color: $product-brown-120;
+}
+
+.product-brown-110 {
+  color: $product-brown-110;
+}
+
+.product-brown-100 {
+  color: $product-brown-100;
+}
+
+.product-brown-90 {
+  color: $product-brown-90;
+}
+
+.product-brown-80 {
+  color: $product-brown-80;
+}
+
+.product-brown-70 {
+  color: $product-brown-70;
+}
+
+.product-brown-60 {
+  color: $product-brown-60;
+}
+
+.product-brown-50 {
+  color: $product-brown-50;
+}
+
+.product-brown-40 {
+  color: $product-brown-40;
+}
+
+.accent-success-120 {
+  color: $accent-success-120;
+}
+
+.accent-success-110 {
+  color: $accent-success-110;
+}
+
+.accent-success-100 {
+  color: $accent-success-100;
+}
+
+.accent-success-90 {
+  color: $accent-success-90;
+}
+
+.accent-success-80 {
+  color: $accent-success-80;
+}
+
+.accent-success-70 {
+  color: $accent-success-70;
+}
+
+.accent-success-60 {
+  color: $accent-success-60;
+}
+
+.accent-success-50 {
+  color: $accent-success-50;
+}
+
+.accent-success-40 {
+  color: $accent-success-40;
+}
+
+.accent-info-120 {
+  color: $accent-info-120;
+}
+
+.accent-info-110 {
+  color: $accent-info-110;
+}
+
+.accent-info-100 {
+  color: $accent-info-100;
+}
+
+.accent-info-90 {
+  color: $accent-info-90;
+}
+
+.accent-info-80 {
+  color: $accent-info-80;
+}
+
+.accent-info-70 {
+  color: $accent-info-70;
+}
+
+.accent-info-60 {
+  color: $accent-info-60;
+}
+
+.accent-info-50 {
+  color: $accent-info-50;
+}
+
+.accent-info-40 {
+  color: $accent-info-40;
+}
+
+.accent-warning-120 {
+  color: $accent-warning-120;
+}
+
+.accent-warning-110 {
+  color: $accent-warning-110;
+}
+
+.accent-warning-100 {
+  color: $accent-warning-100;
+}
+
+.accent-warning-90 {
+  color: $accent-warning-90;
+}
+
+.accent-warning-80 {
+  color: $accent-warning-80;
+}
+
+.accent-warning-70 {
+  color: $accent-warning-70;
+}
+
+.accent-warning-60 {
+  color: $accent-warning-60;
+}
+
+.accent-warning-50 {
+  color: $accent-warning-50;
+}
+
+.accent-warning-40 {
+  color: $accent-warning-40;
+}
+
+.accent-danger-120 {
+  color: $accent-danger-120;
+}
+
+.accent-danger-110 {
+  color: $accent-danger-110;
+}
+
+.accent-danger-100 {
+  color: $accent-danger-100;
+}
+
+.accent-danger-90 {
+  color: $accent-danger-90;
+}
+
+.accent-danger-80 {
+  color: $accent-danger-80;
+}
+
+.accent-danger-70 {
+  color: $accent-danger-70;
+}
+
+.accent-danger-60 {
+  color: $accent-danger-60;
+}
+
+.accent-danger-50 {
+  color: $accent-danger-50;
+}
+
+.accent-danger-40 {
+  color: $accent-danger-40;
+}

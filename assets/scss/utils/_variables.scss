@@ -1,0 +1,169 @@
+// KOLTIVA COLORS
+$white: #fff;
+$black: #1d1d1d;
+$grey-light: #f5f5f5;
+$grey: #3c3d3e;
+$grey-dark: #9d9e9e;
+$green-light: #e3fff0;
+$green: #2bbe72;
+$green-dark: #099c50;
+$blue: #2c7ad2;
+$purple: #8d3dae;
+$orange: #e77614;
+$red: #e72e37;
+
+$color-white: #fff;
+$color-black-100: #121314;
+$color-black-90: #2a2b2c;
+$color-black-80: #3c3d3e;
+$color-black-70: #595a5a;
+$color-black-60: #676768;
+$color-black-50: #888989;
+$color-black-40: #909191;
+$color-black-30: #b8b8b9;
+$color-black-20: #d0d0d0;
+$color-black-10: #e7e7e7;
+$color-black-05: #f5f7f9;
+$color-black-01: #f5f5f5;
+$color-black-hover: #464646;
+$color-red: #d02630;
+$color-light-red: #ffb1b1;
+$color-light-green: #def6cc;
+$color-green: #2bbe72;
+
+$black-100: #121314;
+$black-90: #343536;
+$black-80: #4d4e4f;
+$black-60: #6f7070;
+$black-50: #919192;
+$black-40: #b2b2b3;
+$black-30: #d4d4d4;
+$black-20: #f5f5f5;
+$black-00: #fff;
+
+$primary-green-120: #0f502f;
+$primary-green-110: #18844e;
+$primary-green-100: #2d9d65;
+$primary-green-90: #4cad7c;
+$primary-green-80: #6abe94;
+$primary-green-70: #89ceab;
+$primary-green-60: #a7dec2;
+$primary-green-50: #c6efda;
+$primary-green-40: #e4fff1;
+
+$primary-brown-120: #4e2919;
+$primary-brown-110: #643a28;
+$primary-brown-100: #814c36;
+$primary-brown-90: #966956;
+$primary-brown-80: #ab8575;
+$primary-brown-70: #c0a295;
+$primary-brown-60: #d5beb4;
+$primary-brown-50: #eadbd4;
+$primary-brown-40: #fff7f3;
+
+$primary-sand-120: #b89e85;
+$primary-sand-110: #e3cfbc;
+$primary-sand-100: #ffeee0;
+$primary-sand-90: #fff0e3;
+$primary-sand-80: #fff1e5;
+$primary-sand-70: #fff3e8;
+$primary-sand-60: #fff4eb;
+$primary-sand-50: #fff6ed;
+$primary-sand-40: #fff7f3;
+
+$product-green-120: #0a753e;
+$product-green-110: #099c50;
+$product-green-100: #2bbe72;
+$product-green-90: #4ac987;
+$product-green-80: #68d49c;
+$product-green-70: #87dfb1;
+$product-green-60: #a6e9c6;
+$product-green-50: #c4f4db;
+$product-green-40: #e3fff0;
+
+$product-red-120: #a21e1f;
+$product-red-110: #ca2e2f;
+$product-red-100: #db4d4e;
+$product-red-90: #e1696a;
+$product-red-80: #e78586;
+$product-red-70: #eda2a2;
+$product-red-60: #f3bebe;
+$product-red-50: #f9dada;
+$product-red-40: #fff6f6;
+
+$product-blue-120: #06609a;
+$product-blue-110: #1286d0;
+$product-blue-100: #54a7dc;
+$product-blue-90: #6db5e2;
+$product-blue-80: #87c2e8;
+$product-blue-70: #a0d0ee;
+$product-blue-60: #b9ddf3;
+$product-blue-50: #d3ebf9;
+$product-blue-40: #ecf8ff;
+
+$product-brown-120: #a26b1d;
+$product-brown-110: #d29136;
+$product-brown-100: #f0b35e;
+$product-brown-90: #f3bf78;
+$product-brown-80: #f5cb91;
+$product-brown-70: #f8d8ab;
+$product-brown-60: #fae4c5;
+$product-brown-50: #fdf0de;
+$product-brown-40: #fffcf8;
+
+$accent-success-120: #08611f;
+$accent-success-110: #0b852a;
+$accent-success-100: #25af48;
+$accent-success-90: #44bb5e;
+$accent-success-80: #63c774;
+$accent-success-70: #82d38a;
+$accent-success-60: #a0dea0;
+$accent-success-50: #bfeab6;
+$accent-success-40: #def6cc;
+
+$accent-info-120: #0d65a0;
+$accent-info-110: #0082d9;
+$accent-info-100: #18a0fb;
+$accent-info-90: #4bb5fc;
+$accent-info-80: #64c0fd;
+$accent-info-70: #7ecafd;
+$accent-info-60: #97d5fe;
+$accent-info-50: #b1dffe;
+$accent-info-40: #caeaff;
+
+$accent-warning-120: #b07007;
+$accent-warning-110: #e28d00;
+$accent-warning-100: #ffae28;
+$accent-warning-90: #ffb944;
+$accent-warning-80: #ffc361;
+$accent-warning-70: #ffce7d;
+$accent-warning-60: #ffd999;
+$accent-warning-50: #ffe3b6;
+$accent-warning-40: #ffeed2;
+
+$accent-danger-120: #980e15;
+$accent-danger-110: #d0000a;
+$accent-danger-100: #e72e37;
+$accent-danger-90: #eb4b52;
+$accent-danger-80: #ef676d;
+$accent-danger-70: #f38488;
+$accent-danger-60: #f7a0a3;
+$accent-danger-50: #fbbdbe;
+$accent-danger-40: #ffd9d9;
+
+:root {
+  --black: $black;
+  --dark: $black;
+  --grey-dark: $grey;
+  --grey: $grey-dark;
+  --mid: $grey-light;
+  --light: $white;
+  --white: $white;
+  --green: $green;
+  --green-dark: $green-dark;
+  --green-light: $green-light;
+  --blue: $blue;
+  --purple: $purple;
+  --red: $red;
+  --orange: $orange;
+}
