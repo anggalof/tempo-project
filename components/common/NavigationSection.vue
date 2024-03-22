@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import Navbar from "~/components/common/Navbar.vue";
+import NavbarSection from "~/components/common/NavbarSection.vue";
 const router = useRouter();
 const isOpen = ref(false);
 
@@ -29,7 +29,7 @@ const handleDirect = () => {
         />
       </div>
 
-      <Navbar name="navbar-collapse" />
+      <NavbarSection name="navbar-collapse" />
 
       <div
         class="navbar-toggle"
@@ -57,7 +57,7 @@ const handleDirect = () => {
         @click="handleCloseModal"
       ></div>
       <div class="navbar-sidebar">
-        <Navbar name="navbar-collapse__mobile" />
+        <NavbarSection name="navbar-collapse__mobile" />
       </div>
     </div>
   </div>

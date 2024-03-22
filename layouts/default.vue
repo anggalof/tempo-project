@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import Navigation from "~/components/common/Navigation.vue";
+import NavigationSection from "~/components/common/NavigationSection.vue";
 </script>
 
 <template>
   <main>
     <div class="main-content">
-      <Navigation />
+      <NavigationSection />
       <div class="content-ds">
         <slot />
       </div>

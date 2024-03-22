@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import { getYear } from "~/utils/formatter/dateTime";
+import { formatNumber } from "~/utils/formatter/formatNumber";
 
-type TMovieTrending = {
+type TMovies = {
   id: number;
   media_type: string;
   adult: boolean;
@@ -20,7 +21,7 @@ type TMovieTrending = {
 };
 
 const props = defineProps<{
-  data: TMovieTrending[];
+  data: TMovies[];
 }>();
 
 const { data } = props;
@@ -101,8 +102,8 @@ resetTimeout();
 
 <template>
   <div
-    class="trending"
     ref="element"
+    class="trending"
   >
     <div
       class="trending-slider"
@@ -128,7 +129,7 @@ resetTimeout();
                     src="~assets/img/star.svg"
                     alt="star"
                   />
-                  {{ parseFloat(item.vote_average.toFixed(1)) }}
+                  {{ formatNumber(item.vote_average) }}
                 </div>
                 <div class="trending-name">
                   {{ item.original_title }}

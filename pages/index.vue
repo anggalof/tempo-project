@@ -1,17 +1,51 @@
 <script lang="ts" setup>
-import { useMovieTrending } from "~/composables/useTrending";
-import Carousel from "~/components/common/Carousel.vue";
+import CarouselSection from "~/components/common/CarouselSection.vue";
 import MainSection from "~/components/common/MainSection.vue";
-import data from "~/data/pcs.json";
+import {
+  useMovieTrending,
+  useDiscoverMovies,
+  useAddFavorite,
+  useFavoriteMovies,
+} from "~/composables/useMovies";
 
 const movieTrends: any = await useMovieTrending();
-console.log("movieTrends", movieTrends.results);
+const discoverMovies: any = await useDiscoverMovies();
+const favorite: any = await useFavoriteMovies();
+const favoriteMovies: any = ref({});
+const isLoadingFav: any = ref(false);
+favoriteMovies.value = favorite;
+
+const onLoadFavoriteMovies = async () => {
+  const favorite = await useFavoriteMovies();
+  favoriteMovies.value = favorite;
+  isLoadingFav.value = false;
+};
+
+const handleAddFavorite = async (id: number, type: boolean) => {
+  isLoadingFav.value = true;
+  const payload = {
+    media_type: "movie",
+    media_id: id,
+    favorite: type,
+  };
+  const success: any = await useAddFavorite(payload);
+  onLoadFavoriteMovies();
+};
 </script>
 
 <template>
   <div>
-    <Carousel :data="movieTrends ? movieTrends.results : data.data.news" />
-    <MainSection />
+    <CarouselSection
+      v-if="movieTrends"
+      :data="movieTrends.results"
+    />
+    <MainSection
+      v-if="discoverMovies"
+      :data="discoverMovies.results"
+      :favorite="favoriteMovies.results"
+      :loading="isLoadingFav"
+      @change="handleAddFavorite"
+    />
   </div>
 </template>
 

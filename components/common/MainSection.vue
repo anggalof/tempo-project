@@ -1,152 +1,139 @@
 <script lang="ts" setup>
-import Navbar from "~/components/common/Navbar.vue";
-const router = useRouter();
-const isOpen = ref(false);
+import FilterSidebarSection from "~/components/common/FilterSidebarSection.vue";
+import MovieListSection from "~/components/common/MovieListSection.vue";
 
-const handleToggle = () => {
-  isOpen.value = true;
+type TMovies = {
+  id: number;
+  media_type: string;
+  adult: boolean;
+  backdrop_path: string;
+  genre_ids: any;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: any;
+  poster_path: string;
+  release_date: string;
+  title: string;
+  video: string;
+  vote_average: any;
+  vote_rate: number;
 };
 
-const handleCloseModal = () => {
-  isOpen.value = false;
+const props = defineProps<{
+  data: TMovies[];
+  favorite: TMovies[];
+  loading: boolean;
+}>();
+
+const emit = defineEmits<{
+  (e: "change", id: number, type: boolean): void;
+}>();
+
+const changeFavorite = (id: number, type: boolean) => {
+  emit("change", id, type);
 };
 
-const handleDirect = () => {
-  return router.push("/");
-};
+const { data } = props;
 </script>
 
 <template>
-  <div class="navbar">
-    <div class="container navbar-content">
-      <div
-        class="navbar-logo"
-        @click="handleDirect"
-      >
-        <img
-          src="~assets/img/moovietime-logo.svg"
-          alt="logo"
+  <div class="main-section">
+    <div class="container">
+      <div class="main-header">
+        <div class="main-discover">Discover Movies</div>
+        <div class="main-info">
+          <div class="main-title">My Movies</div>
+          <div class="main-total">
+            <span>{{ data?.length }}</span>
+            movies
+          </div>
+        </div>
+      </div>
+      <div class="main-filter">
+        <FilterSidebarSection />
+        <MovieListSection
+          :data="data"
+          :favorite="props.favorite"
+          :loading="loading"
+          @change="changeFavorite"
         />
-      </div>
-
-      <Navbar name="navbar-collapse" />
-
-      <div
-        class="navbar-toggle"
-        @click="handleToggle"
-      >
-        <svg
-          class="icon-toggle"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fillRule="evenodd"
-            clipRule="evenodd"
-            d="M3 5a1 1 0 1 1 0-2h14a1 1 0 1 1 0 2H3zm0 5a1 1 0 1 1 0-2h14a1 1 0 1 1 0 2H3zm0 5a1 1 0 1 1 0-2h14a1 1 0 1 1 0 2H3z"
-          />
-        </svg>
-      </div>
-    </div>
-    <div
-      class="navbar-toggle__open"
-      :class="isOpen ? 'block' : 'hidden'"
-    >
-      <div
-        :class="isOpen && 'overlay'"
-        @click="handleCloseModal"
-      ></div>
-      <div class="navbar-sidebar">
-        <Navbar name="navbar-collapse__mobile" />
       </div>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.navbar {
+.main-section {
   background-color: #292e36;
-  padding: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 4rem 0;
 
-  @media (max-width: 768px) {
-    justify-content: flex-start;
-    align-items: center;
-  }
-
-  .navbar-content {
+  .main-header {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding: 6px;
+    color: #ffffff;
 
-    @media (max-width: 768px) {
-      width: 100%;
+    .main-discover {
+      font-size: 24px;
+      font-weight: 700;
     }
 
-    .navbar-logo {
-      cursor: pointer;
+    .main-info {
       display: flex;
 
-      img {
-        width: 6rem;
-        margin: 0 1rem;
+      @media (max-width: 768px) {
+        display: block;
+      }
+
+      .main-title {
+        font-size: 14px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
 
         @media (max-width: 768px) {
-          margin: 0;
+          display: block;
+          text-align: center;
+          font-size: 12px;
+        }
+      }
+
+      .main-total {
+        background-color: #21252a;
+        margin-left: 1rem;
+        text-align: center;
+        border-radius: 2rem;
+        font-size: 13px;
+        font-weight: 400;
+        padding: 0.3rem 1rem;
+
+        @media (max-width: 768px) {
+          font-size: 12px;
+          margin-left: 0;
+        }
+
+        span {
+          font-size: 14px;
+          font-weight: 500;
+          margin-right: 5px;
+
+          @media (max-width: 768px) {
+            font-size: 12px;
+            margin-right: 0px;
+          }
         }
       }
     }
-
-    .navbar-toggle {
-      margin-left: auto;
-      padding: 2px;
-      color: #e5e5e5;
-      display: none;
-
-      @media (max-width: 768px) {
-        display: flex;
-        background-color: #292e36;
-      }
-
-      .icon-toggle {
-        fill: currentColor;
-        width: 2rem;
-        height: 2rem;
-      }
-    }
   }
 
-  .navbar-toggle__open {
-    display: none;
+  .main-filter {
+    display: flex;
+    margin: 4rem 0;
 
     @media (max-width: 768px) {
-      border-right: 1px solid #c2cfd6;
-      padding: 0;
-    }
-
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-    }
-
-    .navbar-sidebar {
-      background-color: #292e36;
-      z-index: 99999;
-      height: 100vh;
-      position: fixed;
-      right: 0;
-      top: 0;
-      overflow-y: auto;
+      display: block;
+      margin: 2rem 0;
     }
   }
 }
