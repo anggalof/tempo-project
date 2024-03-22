@@ -78,7 +78,7 @@ const handleResize = () => {
     } else {
       translateValue.value = -sliderWidth / 0.8;
     }
-  } else {
+  } else if (sliderWidth < 700) {
     if (index.value === 0) {
       translateValue.value = -sliderWidth / 225;
     } else if (index.value === 1) {
@@ -88,6 +88,8 @@ const handleResize = () => {
     } else {
       translateValue.value = -sliderWidth / 0.32;
     }
+  } else {
+    translateValue.value = 0;
   }
 };
 

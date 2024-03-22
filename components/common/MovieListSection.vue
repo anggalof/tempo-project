@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import ButtonChange from "~/components/elements/ButtonChange.vue";
 import { getYear } from "~/utils/formatter/dateTime";
 import { formatNumber } from "~/utils/formatter/formatNumber";
 
@@ -21,16 +22,18 @@ type TMovies = {
 };
 
 const props = defineProps<{
-  data: TMovies[];
+  discover: TMovies[];
   favorite: TMovies[];
   loading: boolean;
 }>();
 
-const emit = defineEmits(["change"]);
+const emit = defineEmits(["change", "load"]);
 
 const hoveredCard: any = ref(null);
 
-const { data } = props;
+const changeFavorite = (id: number, type: boolean) => {
+  emit("change", id, type);
+};
 
 const onFavorite = (id: any) => {
   return props.favorite.some((item: any) => item.id === id);
@@ -39,19 +42,18 @@ const onFavorite = (id: any) => {
 
 <template>
   <div class="movie-list">
-    {{ props.favorite }}
-    <div>{{ loading ? "true" : "false" }}</div>
     <div class="movie-card">
       <div
-        v-for="(item, index) in data"
+        v-for="(item, index) in props.discover"
         :key="item.id"
         class="movie-content"
         @mouseover="hoveredCard = index"
         @mouseleave="hoveredCard = null"
       >
-        <img
+        <NuxtImg
           :src="`https://image.tmdb.org/t/p/original/${item.poster_path}`"
           :alt="`movie-${item.id}`"
+          loading="lazy"
         />
         <div class="movie-title">{{ item.title }}</div>
         <div class="movie-date">{{ getYear(item.release_date) }}</div>
@@ -71,25 +73,35 @@ const onFavorite = (id: any) => {
           </div>
           <div class="hover-text">Action</div>
           <div class="hover-btn__view">VIEW</div>
-          <div
-            v-if="onFavorite(item.id)"
-            class="hover-btn__added"
-            @click="emit('change', item.id, false)"
-          >
-            ADDED
+          <div v-if="onFavorite(item.id)">
+            <ButtonChange
+              :id="item.id"
+              :loading="loading"
+              :type="false"
+              name="ADDED"
+              setclass="hover-btn__added"
+              @change="changeFavorite"
+            />
           </div>
-          <div
-            v-else
-            class="hover-btn__add"
-            @click="emit('change', item.id, true)"
-          >
-            <div
-              v-if="loading"
-              class="loading"
-            ></div>
-            <span v-else>ADD</span>
+          <div v-else>
+            <ButtonChange
+              :id="item.id"
+              :loading="loading"
+              :type="true"
+              name="ADD"
+              setclass="hover-btn__add"
+              @change="changeFavorite"
+            />
           </div>
         </div>
+      </div>
+    </div>
+    <div class="load-more">
+      <div
+        class="load-more__button"
+        @click="emit('load')"
+      >
+        Load More
       </div>
     </div>
   </div>
@@ -217,6 +229,27 @@ const onFavorite = (id: any) => {
           font-weight: 700;
           position: relative;
         }
+      }
+    }
+  }
+
+  .load-more {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+
+    .load-more__button {
+      background-color: #ff0000;
+      color: #ffffff;
+      text-align: center;
+      border-radius: 2rem;
+      padding: 0.5rem 1.5rem;
+      margin-top: 1rem;
+      font-weight: 700;
+
+      &:hover {
+        cursor: pointer;
+        background-color: #0e1723;
       }
     }
   }

@@ -2,18 +2,30 @@
 import CarouselSection from "~/components/common/CarouselSection.vue";
 import MainSection from "~/components/common/MainSection.vue";
 import {
-  useMovieTrending,
-  useDiscoverMovies,
   useAddFavorite,
+  useDiscoverMovies,
   useFavoriteMovies,
+  useMovieTrending,
+  usePopularMovies,
 } from "~/composables/useMovies";
 
 const movieTrends: any = await useMovieTrending();
-const discoverMovies: any = await useDiscoverMovies();
+const popularMovies: any = await usePopularMovies();
 const favorite: any = await useFavoriteMovies();
+const discoverMovies: any = ref([]);
 const favoriteMovies: any = ref({});
-const isLoadingFav: any = ref(false);
+const isLoadingFav = ref<boolean>(false);
 favoriteMovies.value = favorite;
+
+const currentPage = ref<number>(1);
+
+const loadDiscoverData = async () => {
+  const data = await useDiscoverMovies(currentPage.value);
+  return data;
+};
+
+const movies: any = await loadDiscoverData();
+discoverMovies.value = movies?.results;
 
 const onLoadFavoriteMovies = async () => {
   const favorite = await useFavoriteMovies();
@@ -28,8 +40,15 @@ const handleAddFavorite = async (id: number, type: boolean) => {
     media_id: id,
     favorite: type,
   };
-  const success: any = await useAddFavorite(payload);
+  await useAddFavorite(payload);
   onLoadFavoriteMovies();
+};
+
+const handleLoadMore = async () => {
+  currentPage.value++;
+  const newData: any = await loadDiscoverData();
+  const data: any = await newData.results;
+  discoverMovies.value = [...discoverMovies.value, ...data];
 };
 </script>
 
@@ -40,11 +59,12 @@ const handleAddFavorite = async (id: number, type: boolean) => {
       :data="movieTrends.results"
     />
     <MainSection
-      v-if="discoverMovies"
-      :data="discoverMovies.results"
+      :discover="discoverMovies"
+      :popular="popularMovies.results"
       :favorite="favoriteMovies.results"
       :loading="isLoadingFav"
       @change="handleAddFavorite"
+      @load="handleLoadMore"
     />
   </div>
 </template>

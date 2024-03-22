@@ -44,7 +44,6 @@ defineProps({
       <div class="navbar-menu__title">MOVIES</div>
       <div class="navbar-menu__title">TV SHOWS</div>
       <div class="navbar-menu__title">LOGIN</div>
-      <!-- <Profile size="dekstop" /> -->
     </div>
   </div>
 </template>

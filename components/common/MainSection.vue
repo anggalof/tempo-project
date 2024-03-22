@@ -21,20 +21,24 @@ type TMovies = {
 };
 
 const props = defineProps<{
-  data: TMovies[];
+  discover: TMovies[];
   favorite: TMovies[];
+  popular: TMovies[];
   loading: boolean;
 }>();
 
 const emit = defineEmits<{
   (e: "change", id: number, type: boolean): void;
+  (e: "load"): void;
 }>();
 
 const changeFavorite = (id: number, type: boolean) => {
   emit("change", id, type);
 };
 
-const { data } = props;
+const loadMore = () => {
+  emit("load");
+};
 </script>
 
 <template>
@@ -45,18 +49,19 @@ const { data } = props;
         <div class="main-info">
           <div class="main-title">My Movies</div>
           <div class="main-total">
-            <span>{{ data?.length }}</span>
+            <span>{{ props.discover?.length }}</span>
             movies
           </div>
         </div>
       </div>
       <div class="main-filter">
-        <FilterSidebarSection />
+        <FilterSidebarSection :popular="props.popular" />
         <MovieListSection
-          :data="data"
+          :discover="props.discover"
           :favorite="props.favorite"
           :loading="loading"
           @change="changeFavorite"
+          @load="loadMore"
         />
       </div>
     </div>

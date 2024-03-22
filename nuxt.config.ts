@@ -13,17 +13,20 @@ export default defineNuxtConfig({
 
   css: ["@/assets/scss/app.scss"],
 
-  modules: [
-    [
-      "@nuxtjs/google-fonts",
-      {
-        families: {
-          Roboto: [100, 200, 300, 400, 500, 600, 700, 800, 900],
-        },
+  modules: [[
+    "@nuxtjs/google-fonts",
+    {
+      families: {
+        Roboto: [100, 200, 300, 400, 500, 600, 700, 800, 900],
       },
-    ],
-    "@nuxtjs/eslint-module",
-  ],
+    },
+  ], "@nuxtjs/eslint-module", "@nuxt/image"],
+
+  image: {
+    domains: [
+      'https://image.tmdb.org/'
+    ]
+  },
 
   typescript: {
     typeCheck: true,
