@@ -9,13 +9,9 @@ import {
   usePopularMovies,
 } from "~/composables/useMovies";
 
-const movieTrends: any = await useMovieTrending();
-const popularMovies: any = await usePopularMovies();
-const favorite: any = await useFavoriteMovies();
 const discoverMovies: any = ref([]);
 const favoriteMovies: any = ref({});
 const isLoadingFav = ref<boolean>(false);
-favoriteMovies.value = favorite;
 
 const currentPage = ref<number>(1);
 
@@ -23,9 +19,6 @@ const loadDiscoverData = async () => {
   const data = await useDiscoverMovies(currentPage.value);
   return data;
 };
-
-const movies: any = await loadDiscoverData();
-discoverMovies.value = movies?.results;
 
 const onLoadFavoriteMovies = async () => {
   const favorite = await useFavoriteMovies();
@@ -50,6 +43,13 @@ const handleLoadMore = async () => {
   const data: any = await newData.results;
   discoverMovies.value = [...discoverMovies.value, ...data];
 };
+
+const movieTrends: any = await useMovieTrending();
+const popularMovies: any = await usePopularMovies();
+const favorite: any = await useFavoriteMovies();
+favoriteMovies.value = favorite;
+const movies: any = await loadDiscoverData();
+discoverMovies.value = movies?.results;
 </script>
 
 <template>

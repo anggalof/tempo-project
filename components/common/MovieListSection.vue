@@ -72,7 +72,9 @@ const onFavorite = (id: any) => {
             </div>
           </div>
           <div class="hover-text">Action</div>
-          <div class="hover-btn__view">VIEW</div>
+          <NuxtLink :to="`/movie/${item.id}`">
+            <div class="hover-btn__view">VIEW</div>
+          </NuxtLink>
           <div v-if="onFavorite(item.id)">
             <ButtonChange
               :id="item.id"

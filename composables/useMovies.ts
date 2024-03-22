@@ -1,7 +1,7 @@
 const trendingUrl = "/api/trending/movie/week?page=1&per_page=3";
 const discoverUrl = "/api/discover/movie";
 const favoriteUrl = "/api/account/8244407/favorite";
-const popularUrl = "/api/movie/popular";
+const movieUrl = "/api/movie";
 
 export const useMovieTrending = async () => {
   const { data } = await useAPI(trendingUrl);
@@ -14,7 +14,7 @@ export const useDiscoverMovies = async (page: number) => {
 };
 
 export const usePopularMovies = async () => {
-  const { data } = await useAPI(popularUrl);
+  const { data } = await useAPI(`${movieUrl}/popular`);
   return data.value;
 };
 
@@ -35,7 +35,17 @@ export const useAddFavorite = async (payload: any) => {
   return data;
 };
 
-// export const useMovieTrendingById = async (id: number) => {
-//   const { data } = await useAPI(`${trendingUrl}/${id}`);
-//   return data.value;
-// };
+export const useMovieById = async (id: number) => {
+  const { data } = await useAPI(`${movieUrl}/${id}`);
+  return data.value;
+};
+
+export const useMovieReview = async (id: number) => {
+  const { data } = await useAPI(`${movieUrl}/${id}/reviews`);
+  return data.value;
+}
+
+export const useMovieRecommendation = async (id: number) => {
+  const { data } = await useAPI(`${movieUrl}/${id}/recommendations`);
+  return data.value;
+}
