@@ -6,7 +6,7 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: "Nuxt 3",
+      title: "Tempo Gaga Project",
     },
     pageTransition: { name: "page", mode: "out-in" },
   },
