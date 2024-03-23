@@ -35,10 +35,10 @@ const props = defineProps<{
           class="movie-content"
         >
           <NuxtLink :to="`/movie/${item.id}`">
-            <NuxtImg
+            <nuxt-img
               :src="`https://image.tmdb.org/t/p/original/${item.poster_path}`"
               :alt="`movie-${item.id}`"
-              loading="lazy"
+              :placeholder="[15]"
             />
             <div class="movie-title">{{ item.title }}</div>
             <div class="movie-date">{{ getYear(item.release_date) }}</div>

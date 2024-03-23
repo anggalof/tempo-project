@@ -74,15 +74,17 @@ if (recommendation.results.length > 0) {
       >
         <div class="movie-detail__information">
           <div class="movie-detail__image">
-            <NuxtImg
+            <nuxt-img
               v-if="movie.poster_path !== null"
               :src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`"
-              loading="lazy"
+              alt="poster"
+              :placeholder="[15]"
             />
-            <img
+            <nuxt-img
               v-else
               :src="localImagePath"
               alt="img-path"
+              :placeholder="[15]"
             />
           </div>
           <div class="movie-detail__more">

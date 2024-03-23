@@ -119,9 +119,10 @@ resetTimeout();
         >
           <div class="trending-detail">
             <div class="trending-image">
-              <img
+              <nuxt-img
                 :src="`https://image.tmdb.org/t/p/original/${item.poster_path}`"
                 alt="avatar"
+                :placeholder="[15]"
               />
             </div>
             <div class="trending-content">

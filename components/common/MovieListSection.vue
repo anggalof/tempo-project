@@ -55,9 +55,10 @@ const onImageError = (e: any) => {
         @mouseover="hoveredCard = index"
         @mouseleave="hoveredCard = null"
       >
-        <img
+        <nuxt-img
           :src="`https://image.tmdb.org/t/p/original/${item.poster_path}`"
           :alt="`movie-${item.id}`"
+          :placeholder="[15]"
           @error="(e) => onImageError(e)"
         />
 
