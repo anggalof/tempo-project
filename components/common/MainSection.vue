@@ -30,6 +30,7 @@ const props = defineProps<{
   favorite: TMovies[];
   loading: boolean;
   genres: TGenres[];
+  show: boolean;
 }>();
 
 const emit = defineEmits<{
@@ -84,6 +85,7 @@ const checkBox = (id: any) => {
           :discover="props.discover"
           :favorite="props.favorite"
           :loading="loading"
+          :show="show"
           @change="changeFavorite"
           @load="loadMore"
           @error="onImageError"

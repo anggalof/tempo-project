@@ -25,6 +25,7 @@ const props = defineProps<{
   discover: TMovies[];
   favorite: TMovies[];
   loading: boolean;
+  show: boolean;
 }>();
 
 const emit = defineEmits(["change", "load", "error"]);
@@ -103,7 +104,10 @@ const onImageError = (e: any) => {
         </div>
       </div>
     </div>
-    <div class="load-more">
+    <div
+      v-if="show"
+      class="load-more"
+    >
       <div
         class="load-more__button"
         @click="emit('load')"

@@ -16,6 +16,7 @@ const isLoadingFav = ref<boolean>(false);
 const currentPage = ref<number>(1);
 const isSort = ref<string>("");
 const isGenre = ref<string>("");
+const isShowLoadMore = ref<boolean>(true);
 
 const loadDiscoverData = async (sort: string, genre: string) => {
   const data = await useDiscoverMovies(currentPage.value, sort, genre);
@@ -44,6 +45,12 @@ const handleLoadMore = async () => {
   const newData: any = await loadDiscoverData(isSort.value, isGenre.value);
   const data: any = await newData.results;
   discoverMovies.value = [...discoverMovies.value, ...data];
+
+  if (newData.page === newData.total_pages) {
+    isShowLoadMore.value = false;
+  } else {
+    isShowLoadMore.value = true;
+  }
 };
 
 const handleChangeSort = async (sort: string) => {
@@ -71,6 +78,12 @@ const handleChangeChecked = async (id: any) => {
   const newData: any = await loadDiscoverData(isSort.value, isGenre.value);
   const data: any = await newData.results;
   discoverMovies.value = data;
+
+  if (newData.page === newData.total_pages) {
+    isShowLoadMore.value = false;
+  } else {
+    isShowLoadMore.value = true;
+  }
 };
 
 const movieTrends: any = await useMovieTrending();
@@ -87,12 +100,13 @@ discoverMovies.value = movies?.results;
       v-if="movieTrends"
       :data="movieTrends.results"
     />
-    {{ isGenre }}
+    {{ isShowLoadMore }}
     <MainSection
       :discover="discoverMovies"
       :favorite="favoriteMovies.results"
       :genres="genreList.genres"
       :loading="isLoadingFav"
+      :show="isShowLoadMore"
       @check="handleChangeChecked"
       @sort="handleChangeSort"
       @change="handleAddFavorite"
