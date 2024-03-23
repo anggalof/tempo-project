@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useSearchMovies } from "~/composables/useMovies";
+import { useSearchMovies, useGenres } from "~/composables/useMovies";
 
 defineProps({
   name: {
@@ -13,6 +13,7 @@ const searchMovie = ref<string>("");
 const searchResult = ref<any>([]);
 const isSearchLoading = ref<boolean>(false);
 const isSearchKeyword = ref<boolean>(false);
+const isCategory: any = ref(false);
 
 const handleSearchMovie = async (event: Event) => {
   isSearchLoading.value = true;
@@ -32,6 +33,16 @@ const handleSearchMovie = async (event: Event) => {
 const handleDirect = () => {
   isSearchKeyword.value = false;
 };
+
+const handleCategories = () => {
+  if (isCategory.value) {
+    isCategory.value = false;
+  } else {
+    isCategory.value = true;
+  }
+};
+
+const genreList: any = await useGenres();
 </script>
 
 <template>
@@ -100,12 +111,27 @@ const handleDirect = () => {
     </div>
     <div class="navbar-menu">
       <div class="navbar-menu__title">
-        <div class="navbar-menu__categories">
+        <div
+          class="navbar-menu__categories"
+          @click="handleCategories"
+        >
           <img
             src="~assets/img/grid-icon.svg"
             alt="grid-icon"
           />
           CATEGORIES
+        </div>
+        <div
+          v-if="isCategory"
+          class="navbar-menu__open"
+        >
+          <div
+            v-for="item in genreList.genres"
+            :key="item.id"
+            class="navbar-menu__category"
+          >
+            {{ item.name }}
+          </div>
         </div>
       </div>
       <div class="navbar-menu__title">MOVIES</div>
@@ -220,6 +246,7 @@ const handleDirect = () => {
 .navbar-menu {
   display: flex;
   color: #e5e5e5;
+  position: relative;
 
   @media (max-width: 768px) {
     display: block;
@@ -235,9 +262,33 @@ const handleDirect = () => {
 
     .navbar-menu__categories {
       display: flex;
+      cursor: pointer;
 
       img {
         margin-right: 0.5rem;
+      }
+    }
+
+    .navbar-menu__open {
+      background-color: #ffffff;
+      border-radius: 0 0 0.5rem 0.5rem;
+      position: absolute;
+      z-index: 999999;
+      top: 50px;
+
+      @media (max-width: 768px) {
+        top: 28px;
+      }
+
+      .navbar-menu__category {
+        padding: 0.3rem 0.5rem;
+        cursor: pointer;
+        color: #000000;
+
+        &:hover {
+          background-color: #000000;
+          color: #ffffff;
+        }
       }
     }
   }

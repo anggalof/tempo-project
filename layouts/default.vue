@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import NavigationSection from "~/components/common/NavigationSection.vue";
+import FooterSection from "~/components/common/FooterSection.vue";
 </script>
 
 <template>
@@ -9,6 +10,7 @@ import NavigationSection from "~/components/common/NavigationSection.vue";
       <div class="content-ds">
         <slot />
       </div>
+      <FooterSection />
     </div>
   </main>
 </template>
@@ -17,7 +19,6 @@ import NavigationSection from "~/components/common/NavigationSection.vue";
 .main-content {
   display: flex;
   flex-flow: column;
-  height: 100vh;
 }
 
 .content-ds {
