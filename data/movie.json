@@ -42,5 +42,57 @@
       "updated_at": "2024-03-12T15:08:38.073Z",
       "url": "https://www.themoviedb.org/review/65f06ff59463180147609d12"
     }
+  ],
+  "recommendation": [
+    {
+      "backdrop_path": "/siidi1AD6JNwWqrepY5DhqCCuEX.jpg",
+      "id": 46169,
+      "title": "Twitches Too",
+      "original_title": "Twitches Too",
+      "overview": "Reunited witch twins Camryn and Alex adjust to their new life as supernatural beings while at the same time trying to maintain a normal existence in this sequel to the magical Disney Channel original movie Twitches. But they soon find themselves going head to head with the forces of darkness that threaten to destroy their world. Luckily, their birth mother, the powerful Miranda, is on hand to help out.",
+      "poster_path": "/70aurzbqFMuJnwhIVW2aXeyzBAp.jpg",
+      "release_date": "2007-10-12",
+      "vote_average": 6.741
+    },
+    {
+      "backdrop_path": "/A4EYoPhKeDdkNbfE9rIDSKeN39j.jpg",
+      "id": 586032,
+      "title": "1",
+      "original_title": "1",
+      "overview": "Early morning silence is broken by screeching tires as a helicopter bears down on a speeding vehicle. Taking a quick corner, the team tumbles out into the woods as their car pulls away. Now they must make their way through the thick of nature and thick gunfire to accomplish their mission. Not a single word of dialogue is spoken throughout the entire film. Instead, the music, sounds, images and deeply truthful acting turn a simple plot into an intense experience. Passion and intrigue keep building to the very end.",
+      "poster_path": "/gmArXynq0fjMjdLaj9E893Jp6TB.jpg",
+      "release_date": "2020-09-14",
+      "vote_average": 7.063
+    },
+    {
+      "backdrop_path": "/evIqJy4BCZi86ry7CSu4gEE9ujb.jpg",
+      "id": 1026624,
+      "title": "It's a Wonderful Binge",
+      "original_title": "It's a Wonderful Binge",
+      "overview": "Like the original film, the sequel is set in a near future where all drinking and drugs are banned except for on one glorious day known as The Binge. This year, that day happens to miraculously land on Christmas.",
+      "poster_path": "/hU9ouAPcg2LG7n85WUxjKwPq2y4.jpg",
+      "release_date": "2022-12-09",
+      "vote_average": 4.99
+    },
+    {
+      "backdrop_path": "/zSqNRkzuJNWQJymKnCycQ5WxuuD.jpg",
+      "id": 985103,
+      "title": "King Shakir Recycle",
+      "original_title": "Kral Şakir: Geri Dönüşüm",
+      "overview": "Scientists trying to solve the environmental crisis of pollution devise a way to send the collected garbage into space via rocket ships. When this garbage starts to land on alien planets, the outraged aliens head to Earth for revenge. King Shakir and his family must do their best to protect the world from alien destruction.",
+      "poster_path": "/y0kGpKB2elapYboHklgn9wLTj9x.jpg",
+      "release_date": "2022-07-14",
+      "vote_average": 5.8
+    },
+    {
+      "backdrop_path": "/bz66a19bR6BKsbY8gSZCM4etJiK.jpg",
+      "id": 1006462,
+      "title": "The Flood",
+      "original_title": "The Flood",
+      "overview": "A horde of giant hungry alligators is unleashed on a group of in-transit prisoners and their guards after a massive hurricane floods Louisiana.",
+      "poster_path": "/mvjqqklMpHwOxc40rn7dMhGT0Fc.jpg",
+      "release_date": "2023-07-14",
+      "vote_average": 6.551
+    }
   ]
 }

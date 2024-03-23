@@ -1,22 +1,24 @@
 <script lang="ts" setup>
 import CarouselSection from "~/components/common/CarouselSection.vue";
 import MainSection from "~/components/common/MainSection.vue";
+import localImagePath from "~/assets/img/image-not-found.jpg";
 import {
   useAddFavorite,
   useDiscoverMovies,
   useFavoriteMovies,
   useMovieTrending,
-  usePopularMovies,
+  useGenres,
 } from "~/composables/useMovies";
 
 const discoverMovies: any = ref([]);
 const favoriteMovies: any = ref({});
 const isLoadingFav = ref<boolean>(false);
-
 const currentPage = ref<number>(1);
+const isSort = ref<string>("");
+const isGenre = ref<string>("");
 
-const loadDiscoverData = async () => {
-  const data = await useDiscoverMovies(currentPage.value);
+const loadDiscoverData = async (sort: string, genre: string) => {
+  const data = await useDiscoverMovies(currentPage.value, sort, genre);
   return data;
 };
 
@@ -39,16 +41,43 @@ const handleAddFavorite = async (id: number, type: boolean) => {
 
 const handleLoadMore = async () => {
   currentPage.value++;
-  const newData: any = await loadDiscoverData();
+  const newData: any = await loadDiscoverData(isSort.value, isGenre.value);
   const data: any = await newData.results;
   discoverMovies.value = [...discoverMovies.value, ...data];
 };
 
+const handleChangeSort = async (sort: string) => {
+  isSort.value = sort;
+  const newData: any = await loadDiscoverData(sort, isGenre.value);
+  const data: any = await newData.results;
+  discoverMovies.value = data;
+};
+
+const handleImageError = (e: any) => {
+  e.target.src = localImagePath;
+};
+
+const handleChangeChecked = async (id: any) => {
+  if (isGenre.value === "") {
+    isGenre.value = id.toString();
+  } else if (isGenre.value.includes(id)) {
+    const strGenre = isGenre.value.split(",");
+    const index = strGenre.indexOf(id.toString());
+    strGenre.splice(index, 1);
+    isGenre.value = strGenre.join(",");
+  } else {
+    isGenre.value = `${isGenre.value},${id}`;
+  }
+  const newData: any = await loadDiscoverData(isSort.value, isGenre.value);
+  const data: any = await newData.results;
+  discoverMovies.value = data;
+};
+
 const movieTrends: any = await useMovieTrending();
-const popularMovies: any = await usePopularMovies();
 const favorite: any = await useFavoriteMovies();
+const genreList: any = await useGenres();
 favoriteMovies.value = favorite;
-const movies: any = await loadDiscoverData();
+const movies: any = await loadDiscoverData(isSort.value, isGenre.value);
 discoverMovies.value = movies?.results;
 </script>
 
@@ -58,13 +87,17 @@ discoverMovies.value = movies?.results;
       v-if="movieTrends"
       :data="movieTrends.results"
     />
+    {{ isGenre }}
     <MainSection
       :discover="discoverMovies"
-      :popular="popularMovies.results"
       :favorite="favoriteMovies.results"
+      :genres="genreList.genres"
       :loading="isLoadingFav"
+      @check="handleChangeChecked"
+      @sort="handleChangeSort"
       @change="handleAddFavorite"
       @load="handleLoadMore"
+      @error="handleImageError"
     />
   </div>
 </template>

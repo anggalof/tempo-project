@@ -20,16 +20,24 @@ type TMovies = {
   vote_rate: number;
 };
 
+type TGenres = {
+  id: number;
+  name: string;
+};
+
 const props = defineProps<{
   discover: TMovies[];
   favorite: TMovies[];
-  popular: TMovies[];
   loading: boolean;
+  genres: TGenres[];
 }>();
 
 const emit = defineEmits<{
   (e: "change", id: number, type: boolean): void;
   (e: "load"): void;
+  (e: "sort", sort: string): void;
+  (e: "error", index: number): void;
+  (e: "check", id: any): void;
 }>();
 
 const changeFavorite = (id: number, type: boolean) => {
@@ -38,6 +46,18 @@ const changeFavorite = (id: number, type: boolean) => {
 
 const loadMore = () => {
   emit("load");
+};
+
+const sortBy = (sort: string) => {
+  emit("sort", sort);
+};
+
+const onImageError = (e: any) => {
+  emit("error", e);
+};
+
+const checkBox = (id: any) => {
+  emit("check", id);
 };
 </script>
 
@@ -55,13 +75,18 @@ const loadMore = () => {
         </div>
       </div>
       <div class="main-filter">
-        <FilterSidebarSection :popular="props.popular" />
+        <FilterSidebarSection
+          :genres="props.genres"
+          @sort="sortBy"
+          @check="checkBox"
+        />
         <MovieListSection
           :discover="props.discover"
           :favorite="props.favorite"
           :loading="loading"
           @change="changeFavorite"
           @load="loadMore"
+          @error="onImageError"
         />
       </div>
     </div>

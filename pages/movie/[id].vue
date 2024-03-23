@@ -1,10 +1,11 @@
 <script lang="ts" setup>
-import movieReviews from "~/data/movie.json";
+import movieData from "~/data/movie.json";
 import { useMovieById, useMovieReview, useMovieRecommendation } from "~/composables/useMovies";
 import { getYear } from "~/utils/formatter/dateTime";
 import { formatNumber } from "~/utils/formatter/formatNumber";
 import MovieReview from "~/components/common/MovieReview.vue";
 import MovieRecommendation from "~/components/common/MovieRecommendation.vue";
+import localImagePath from "~/assets/img/image-not-found.jpg";
 
 const route = useRoute();
 const movieId: any = route.params.id;
@@ -29,8 +30,10 @@ const handleResize = () => {
     targetHeight.value = "5.5rem";
   } else if (widthDetail <= 1378 && widthDetail >= 1178) {
     positionBottom.value = "-192px";
+    targetHeight.value = "7rem";
   } else if (widthDetail < 1178 && widthDetail > 768) {
     positionLeft.value = "5%";
+    targetHeight.value = "7rem";
   } else {
     positionLeft.value = "auto";
   }
@@ -39,12 +42,18 @@ const handleResize = () => {
 const movie: any = await useMovieById(movieId);
 const reviews: any = await useMovieReview(movieId);
 const recommendation: any = await useMovieRecommendation(movieId);
-const show5recommendation: any = recommendation.results.slice(0, 5);
+let show5recommendation: any = [];
 let show2review: any = [];
 if (reviews.results.length > 0) {
   show2review = reviews.results.slice(0, 2);
 } else {
-  show2review = movieReviews.reviews.slice(0, 2);
+  show2review = movieData.reviews.slice(0, 2);
+}
+
+if (recommendation.results.length > 0) {
+  show5recommendation = recommendation.results.slice(0, 5);
+} else {
+  show5recommendation = movieData.recommendation.slice(0, 5);
 }
 </script>
 <template>
@@ -66,19 +75,37 @@ if (reviews.results.length > 0) {
         <div class="movie-detail__information">
           <div class="movie-detail__image">
             <NuxtImg
+              v-if="movie.poster_path !== null"
               :src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`"
               loading="lazy"
+            />
+            <img
+              v-else
+              :src="localImagePath"
+              alt="img-path"
             />
           </div>
           <div class="movie-detail__more">
             <div class="movie-detail__section-header">
-              <div class="movie-detail__date">
+              <div
+                v-if="movie.release_date !== ''"
+                class="movie-detail__date"
+              >
                 {{ getYear(movie.release_date) }}
+              </div>
+              <div
+                v-else
+                class="movie-detail__date"
+              >
+                -
               </div>
               <div class="movie-detail__title">
                 {{ movie.title }}
               </div>
-              <div class="movie-detail__genre">
+              <div
+                v-if="movie.genres.length > 0"
+                class="movie-detail__genre"
+              >
                 <div
                   v-for="(item, index) in movie.genres"
                   :key="item.id"
@@ -86,6 +113,12 @@ if (reviews.results.length > 0) {
                   {{ item.name }}
                   <span v-if="index < movie.genres.length - 1">,</span>
                 </div>
+              </div>
+              <div
+                v-else
+                class="movie-detail__genre"
+              >
+                -
               </div>
             </div>
             <div class="movie-detail__complete">
@@ -108,8 +141,17 @@ if (reviews.results.length > 0) {
               <div class="line-height"></div>
               <div class="movie-detail__more-info">
                 <div class="movie-detail__more-top">LANGUAGE</div>
-                <div class="movie-detail__more-bottom">
-                  {{ movie.spoken_languages[0].name }} VOTES
+                <div
+                  v-if="movie.spoken_languages.length > 0"
+                  class="movie-detail__more-bottom"
+                >
+                  {{ movie.spoken_languages[0].name }}
+                </div>
+                <div
+                  v-else
+                  class="movie-detail__more-bottom"
+                >
+                  -
                 </div>
               </div>
               <div class="line-height"></div>
@@ -120,8 +162,17 @@ if (reviews.results.length > 0) {
               <div class="line-height"></div>
               <div class="movie-detail__more-info">
                 <div class="movie-detail__more-top">PRODUCTION</div>
-                <div class="movie-detail__more-bottom">
+                <div
+                  v-if="movie.production_companies.length > 0"
+                  class="movie-detail__more-bottom"
+                >
                   {{ movie.production_companies[0].name }}
+                </div>
+                <div
+                  v-else
+                  class="movie-detail__more-bottom"
+                >
+                  -
                 </div>
               </div>
             </div>

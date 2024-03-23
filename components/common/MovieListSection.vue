@@ -27,7 +27,7 @@ const props = defineProps<{
   loading: boolean;
 }>();
 
-const emit = defineEmits(["change", "load"]);
+const emit = defineEmits(["change", "load", "error"]);
 
 const hoveredCard: any = ref(null);
 
@@ -37,6 +37,10 @@ const changeFavorite = (id: number, type: boolean) => {
 
 const onFavorite = (id: any) => {
   return props.favorite.some((item: any) => item.id === id);
+};
+
+const onImageError = (e: any) => {
+  emit("error", e);
 };
 </script>
 
@@ -50,11 +54,12 @@ const onFavorite = (id: any) => {
         @mouseover="hoveredCard = index"
         @mouseleave="hoveredCard = null"
       >
-        <NuxtImg
+        <img
           :src="`https://image.tmdb.org/t/p/original/${item.poster_path}`"
           :alt="`movie-${item.id}`"
-          loading="lazy"
+          @error="(e) => onImageError(e)"
         />
+
         <div class="movie-title">{{ item.title }}</div>
         <div class="movie-date">{{ getYear(item.release_date) }}</div>
         <div class="movie-rate">{{ formatNumber(item.vote_average) }}</div>
