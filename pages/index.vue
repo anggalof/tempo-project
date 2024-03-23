@@ -100,7 +100,6 @@ discoverMovies.value = movies?.results;
       v-if="movieTrends"
       :data="movieTrends.results"
     />
-    {{ isShowLoadMore }}
     <MainSection
       :discover="discoverMovies"
       :favorite="favoriteMovies.results"

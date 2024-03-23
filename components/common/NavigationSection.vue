@@ -1,7 +1,9 @@
 <script lang="ts" setup>
 import NavbarSection from "~/components/common/NavbarSection.vue";
+
 const router = useRouter();
 const isOpen = ref(false);
+const searchMovie = ref<string>("");
 
 const handleToggle = () => {
   isOpen.value = true;

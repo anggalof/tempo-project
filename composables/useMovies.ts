@@ -2,10 +2,16 @@ const trendingUrl = "/api/trending/movie/week?page=1&per_page=3";
 const discoverUrl = "/api/discover/movie";
 const favoriteUrl = "/api/account/8244407/favorite";
 const movieUrl = "/api/movie";
-const genres = "/api/genre/movie/list";
+const genreUrl = "/api/genre/movie/list";
+const searchUrl = "/api/search/keyword";
 
 export const useMovieTrending = async () => {
   const { data } = await useAPI(trendingUrl);
+  return data.value;
+};
+
+export const useSearchMovies = async (keyword: string = '') => {
+  const { data } = await useAPI(`${searchUrl}?query=${keyword}`);
   return data.value;
 };
 
@@ -25,7 +31,7 @@ export const useFavoriteMovies = async () => {
 };
 
 export const useGenres = async () => {
-  const { data } = await useAPI(genres);
+  const { data } = await useAPI(genreUrl);
   return data.value;
 };
 

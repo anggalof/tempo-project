@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { useSearchMovies } from "~/composables/useMovies";
+
 defineProps({
   name: {
     type: String,
@@ -6,6 +8,30 @@ defineProps({
     default: "",
   },
 });
+
+const searchMovie = ref<string>("");
+const searchResult = ref<any>([]);
+const isSearchLoading = ref<boolean>(false);
+const isSearchKeyword = ref<boolean>(false);
+
+const handleSearchMovie = async (event: Event) => {
+  isSearchLoading.value = true;
+  const target = event.target as HTMLInputElement;
+  const search: any = await useSearchMovies(target.value);
+  if (search) {
+    searchResult.value = search.results;
+    isSearchLoading.value = false;
+  }
+  if (target.value !== "") {
+    isSearchKeyword.value = true;
+  } else {
+    isSearchKeyword.value = false;
+  }
+};
+
+const handleDirect = () => {
+  isSearchKeyword.value = false;
+};
 </script>
 
 <template>
@@ -24,11 +50,52 @@ defineProps({
           alt="search-icon"
         />
         <input
+          v-model="searchMovie"
           type="text"
           name="search"
+          @input="handleSearchMovie"
           class="form-control form-input"
           placeholder="Find movie"
         />
+        <div
+          v-if="isSearchKeyword"
+          class="navbar-search__results"
+        >
+          <div
+            v-if="isSearchLoading"
+            class="navbar-search__process"
+          >
+            <div class="loading"></div>
+          </div>
+          <div v-else>
+            <div>
+              <div
+                v-if="searchResult.length > 0"
+                class="navbar-search__show"
+              >
+                <div
+                  v-for="item in searchResult"
+                  :key="item.id"
+                >
+                  <NuxtLink
+                    :to="`/movie/${item.id}`"
+                    @click="handleDirect"
+                  >
+                    <div class="navbar-search__name">
+                      {{ item.name }}
+                    </div>
+                  </NuxtLink>
+                </div>
+              </div>
+              <div
+                v-else
+                class="navbar-movie__not-found"
+              >
+                Movie not found!!!
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="navbar-menu">
@@ -107,6 +174,45 @@ defineProps({
 
     input::placeholder {
       color: #ffffff;
+    }
+
+    .navbar-search__results {
+      border-radius: 0 0 1rem 1rem;
+      background-color: #000000;
+      color: #ffffff;
+      position: absolute;
+      z-index: 99999;
+      width: 100%;
+
+      .navbar-search__process {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+      }
+
+      .navbar-search__show {
+        a {
+          text-decoration: none;
+          color: #ffffff !important;
+
+          .navbar-search__name {
+            padding: 0.5rem 1rem;
+
+            cursor: pointer;
+
+            &:hover {
+              background-color: #24282e;
+            }
+          }
+        }
+      }
+
+      .navbar-movie__not-found {
+        padding: 1rem;
+        text-align: center;
+        font-size: 14px;
+      }
     }
   }
 }
