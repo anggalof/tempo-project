@@ -7,69 +7,30 @@ Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introdu
 Make sure to install the dependencies:
 
 ```bash
+# nvm
+nvm use 18
 # npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
+# npm running
 npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
+# Make Sure
+rm -rf node_modules package-lock.json .nuxt
 ```
 
-## Production
-
-Build the application for production:
-
+## API Key
 ```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+Using themoviedb.org
+API Key & Token includes
 ```
 
-Locally preview production build:
-
+## TECH STACK & Plugin
 ```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
+- Nuxt 3
+- Vue 3
+- Typescript
+- SASS
+- Eslint
+- Prettier
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

@@ -85,7 +85,7 @@ const handleChangeChecked = (event: Event, genre: string, id: any): void => {
     </div>
     <div class="filter-sidebar__genres">Genres</div>
     <div
-      v-for="(genre, index) in genres"
+      v-for="(genre, index) in props.genres"
       :key="index"
       class="filter-sidebar__genre-list"
     >

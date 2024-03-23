@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   runtimeConfig: {
-    apiUrl: process.env.API_URL,
+    apiUrl: process.env.API_URL || 'https://api.themoviedb.org/3/',
   },
 
   app: {

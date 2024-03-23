@@ -64,9 +64,9 @@ const genreList: any = await useGenres();
           v-model="searchMovie"
           type="text"
           name="search"
-          @input="handleSearchMovie"
           class="form-control form-input"
           placeholder="Find movie"
+          @input="handleSearchMovie"
         />
         <div
           v-if="isSearchKeyword"
